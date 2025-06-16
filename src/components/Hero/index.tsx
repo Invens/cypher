@@ -2,12 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Hero = () => {
   const sectionRef = useRef(null);
   const bgTopRef = useRef(null);
   const bgBottomRef = useRef(null);
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -56,7 +57,9 @@ const Hero = () => {
       if (response.ok) {
         setIsSubmitted(true);
         setFormData({ name: "", email: "", company: "", message: "" });
-        setTimeout(() => setIsSubmitted(false), 5000); // Hide message after 5s
+        setTimeout(() => {
+          router.push("/thankyou");
+        }, 2000); // Redirect after 2 seconds to show success message
       } else {
         throw new Error("Form submission failed");
       }
@@ -132,7 +135,7 @@ const Hero = () => {
               </h3>
               {isSubmitted && (
                 <div className="mb-6 rounded bg-green-100 p-4 text-green-800 dark:bg-green-900 dark:text-green-200">
-                  Thank you! Your message has been sent successfully.
+                  Thank you! Redirecting to confirmation page...
                 </div>
               )}
               {error && (
@@ -164,8 +167,6 @@ const Hero = () => {
                     type="email"
                     name="email"
                     value={formData.email}
-
-                    
                     onChange={handleChange}
                     required
                     aria-label="Your Email"
