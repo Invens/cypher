@@ -229,7 +229,7 @@ const Hero = () => {
                     aria-label="Call us at +1-800-555-1234"
                     className="text-base text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                   >
-                    +1-800-555-1234
+                    (+1)9295382074
                   </a>
                 </div>
                 <div className="flex items-center">
